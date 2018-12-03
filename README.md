@@ -1,5 +1,7 @@
 # Advent of Code 2018
 
+![Logo](docs/logo.png)
+
 This is an implementation of Advent of Code 2018
 in the programming language Rust. It can be compiled
 and executed on Windows, Linux and MacOSX. The program
