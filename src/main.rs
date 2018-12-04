@@ -1,7 +1,7 @@
 extern crate clap;
 
 mod aoc_utils;
-mod day1_part1;
+mod day1;
 
 
 use std::io;
@@ -32,7 +32,7 @@ fn main() -> io::Result<()>{
             = arg_matches.subcommand_matches("day1-part1") {
 
             let input = day1_part1_matches.value_of("input").unwrap();
-            day1_part1::start(input)?;
+            day1::part1::start(input)?;
         }
 
         Ok(())

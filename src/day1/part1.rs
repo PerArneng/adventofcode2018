@@ -1,6 +1,4 @@
 
-#[cfg(test)]
-mod day1_part1_tests;
 
 use aoc_utils;
 use std::fs::File;
@@ -8,7 +6,7 @@ use std::io::{self, BufRead, BufReader};
 
 
 
-fn parse_frequency(frequency_string:&str) -> io::Result<i32> {
+pub fn parse_frequency(frequency_string:&str) -> io::Result<i32> {
 
     let frequency_result = frequency_string.parse::<i32>();
     match frequency_result {
@@ -20,7 +18,7 @@ fn parse_frequency(frequency_string:&str) -> io::Result<i32> {
 }
 
 
-fn read_frequencies(input:&str) -> io::Result<Vec<i32>> {
+pub fn read_frequencies(input:&str) -> io::Result<Vec<i32>> {
 
     let f = File::open(input)?;
     let reader = BufReader::new(f);
@@ -37,7 +35,7 @@ fn read_frequencies(input:&str) -> io::Result<Vec<i32>> {
 }
 
 
-fn calculate_sum_of_frequencies(vector:&Vec<i32>) -> i32 {
+pub fn calculate_sum_of_frequencies(vector:&Vec<i32>) -> i32 {
     return vector.into_iter().fold(0, |a,b| a + b);
 }
 
