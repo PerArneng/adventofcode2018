@@ -1,7 +1,8 @@
 
+
 use std::io;
 use crate::aoc_utils;
-use crate::day1;
+use crate::day1::utils;
 use std::collections::{HashSet};
 
 const MAX_ITERATIONS:i32 = 1_000_000;
@@ -38,7 +39,7 @@ pub fn start(input:&str) -> io::Result<()> {
     println!("    using file: '{}'", input);
 
     aoc_utils::ensure_file(input);
-    let numbers = day1::read_frequencies(input)?;
+    let numbers = utils::read_frequencies(input)?;
     let total_freq = find_first_duplicate_frequency(&numbers);
 
     match total_freq {

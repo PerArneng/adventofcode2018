@@ -1,5 +1,5 @@
 
-use day1::part2;
+use crate::day1::part2;
 
 
 #[test]

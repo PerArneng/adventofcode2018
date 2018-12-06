@@ -1,6 +1,6 @@
 use crate::aoc_utils;
 use std::io;
-use crate::day1;
+use crate::day1::utils;
 
 
 pub fn calculate_sum_of_frequencies(vector:&Vec<i32>) -> i32 {
@@ -13,7 +13,7 @@ pub fn start(input:&str) -> io::Result<()> {
     println!("    using file: '{}'", input);
 
     aoc_utils::ensure_file(input);
-    let numbers = day1::read_frequencies(input)?;
+    let numbers = utils::read_frequencies(input)?;
     let total_freq = calculate_sum_of_frequencies(&numbers);
 
     println!("    result: {}", total_freq);

@@ -1,9 +1,9 @@
 
-use day1::{self, part1};
+use crate::day1::{self, utils, part1};
 
 #[test]
 fn parse_frequency_simple_happy_path() {
-    let parse = day1::parse_frequency;
+    let parse = utils::parse_frequency;
     assert_eq!(parse("+1").unwrap(), 1);
     assert_eq!(parse("10").unwrap(), 10);
     assert_eq!(parse("-5").unwrap(), -5);
