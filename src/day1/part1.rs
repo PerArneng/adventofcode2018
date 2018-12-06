@@ -1,6 +1,6 @@
-use aoc_utils;
+use crate::aoc_utils;
 use std::io;
-use day1;
+use crate::day1;
 
 
 pub fn calculate_sum_of_frequencies(vector:&Vec<i32>) -> i32 {

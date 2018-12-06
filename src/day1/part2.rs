@@ -1,7 +1,7 @@
 
 use std::io;
-use aoc_utils;
-use day1;
+use crate::aoc_utils;
+use crate::day1;
 use std::collections::{HashSet};
 
 const MAX_ITERATIONS:i32 = 1_000_000;
