@@ -2,10 +2,22 @@ extern crate clap;
 
 mod aoc_utils;
 mod day1;
-
+mod day2;
 
 use std::io;
 use clap::{Arg, SubCommand, App};
+
+fn sub_command_with_input<'a>(name:&'a str, input_desc:&'a str) -> App<'a,'a> {
+    SubCommand::with_name(name)
+        .arg(Arg::with_name("input")
+            .short("i")
+            .long("input")
+            .value_name("FILE")
+            .takes_value(true)
+            .help(input_desc)
+            .required(true)
+        ) as App
+}
 
 fn main() -> io::Result<()>{
 
@@ -17,15 +29,10 @@ fn main() -> io::Result<()>{
         .version("0.1")
         .author("Per Arneng")
         .subcommand(
-            SubCommand::with_name("day1-part1")
-                .arg(Arg::with_name("input")
-                    .short("i")
-                    .long("input")
-                    .value_name("FILE")
-                    .takes_value(true)
-                    .help("the input frequencies")
-                    .required(true)
-                )
+            sub_command_with_input("day1-part1", "the input frequencies")
+        ).subcommand(
+            sub_command_with_input("day1-part2", "the input frequencies")
+
         ).get_matches();
 
         if let Some(day1_part1_matches)
@@ -33,6 +40,13 @@ fn main() -> io::Result<()>{
 
             let input = day1_part1_matches.value_of("input").unwrap();
             day1::part1::start(input)?;
+        }
+
+        if let Some(day1_part2_matches)
+            = arg_matches.subcommand_matches("day1-part2") {
+
+            let input = day1_part2_matches.value_of("input").unwrap();
+            day1::part2::start(input)?;
         }
 
         Ok(())

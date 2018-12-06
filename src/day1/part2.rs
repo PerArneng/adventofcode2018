@@ -14,7 +14,7 @@ pub fn find_first_duplicate_frequency(vector:&Vec<i32>) -> Option<i32> {
 
     seen_frequencies.insert(current_value);
 
-    for i in 0..MAX_ITERATIONS {
+    for _i in 0..MAX_ITERATIONS {
 
         for freq_change in vector {
 
@@ -32,16 +32,18 @@ pub fn find_first_duplicate_frequency(vector:&Vec<i32>) -> Option<i32> {
     return None;
 }
 
-/*
+
 pub fn start(input:&str) -> io::Result<()> {
     println!(" :- Day 2 Part 2");
     println!("    using file: '{}'", input);
 
     aoc_utils::ensure_file(input);
     let numbers = day1::read_frequencies(input)?;
-    //let total_freq = find_first_duplicate_frequency(&numbers);
+    let total_freq = find_first_duplicate_frequency(&numbers);
 
-    //println!("    result: {}", total_freq);
-
-    Ok(())
-}*/
+    match total_freq {
+        Some(x) => { println!("    result: {}", x); Ok(()) }
+        None => Err(io::Error::new(io::ErrorKind::InvalidInput,
+                               "could not find a duplicate nr"))
+    }
+}
