@@ -1,19 +1,18 @@
 
 use std::collections::{HashMap,HashSet};
+use std::iter::FromIterator;
+use itertools::Itertools;
+
 
 #[derive(PartialEq)]
 #[derive(Debug)]
-#[derive(Hash)]
-#[derive(Eq)]
 pub enum Repetition {
-    None,
     Double,
-    Triplet,
-    DoubleAndTriplet
+    Triplet
 }
 
 
-pub fn calculate_repetition(id:&str) -> Repetition {
+pub fn calculate_repetition(id:&str) -> Vec<Repetition> {
 
     let mut char_freq:HashMap<char, i32> = HashMap::new();
 
@@ -27,17 +26,10 @@ pub fn calculate_repetition(id:&str) -> Repetition {
                 }
     );
 
-
-    let reps:HashSet<Repetition> = char_freq.values().map(
-        |freq| match freq {
-            1 => Repetition::None,
-            2 => Repetition::Double,
-            _ => Repetition::Triplet
-        }
-    ).filter(|rep| *rep != Repetition::None)
-        .collect();
-
-    //char_map.iter().for_each(|f| println!("{} {}", f.0, f.1));
-
-    return Repetition::None;
+    char_freq
+        .values()
+        .map(|x| *x)
+        .filter(|x| (*x) == 2 || (*x) == 3)
+        .map(|n| if n == 2 { Repetition::Double } else { Repetition::Triplet })
+        .collect::<Vec<Repetition>>()
 }
