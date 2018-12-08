@@ -9,6 +9,8 @@ will contain all the days that i have time to implement.
 Each day and part will be implemented as a sub command
 to the main executable.
 
+*Note!* Requires Rust 2018 Edition or later
+
 ## Compiling
 ```
 $ cargo build

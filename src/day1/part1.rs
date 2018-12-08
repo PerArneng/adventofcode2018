@@ -1,3 +1,7 @@
+
+#[cfg(test)]
+pub mod tests;
+
 use crate::aoc_utils;
 use std::io;
 use crate::day1::utils;

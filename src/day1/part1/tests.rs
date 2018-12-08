@@ -1,5 +1,5 @@
 
-use crate::day1::{self, utils, part1};
+use crate::day1::{utils, part1};
 
 #[test]
 fn parse_frequency_simple_happy_path() {

@@ -1,10 +1,16 @@
 
-use std::collections::{HashMap,HashSet};
-use std::iter::FromIterator;
+#[cfg(test)]
+pub mod tests;
+
+
+use std::collections::{HashMap};
+use std::io;
+use crate::aoc_utils;
+
 use itertools::Itertools;
 
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Eq, Hash, Clone)]
 #[derive(Debug)]
 pub enum Repetition {
     Double,
@@ -31,5 +37,41 @@ pub fn calculate_repetition(id:&str) -> Vec<Repetition> {
         .map(|x| *x)
         .filter(|x| (*x) == 2 || (*x) == 3)
         .map(|n| if n == 2 { Repetition::Double } else { Repetition::Triplet })
+        .unique()
         .collect::<Vec<Repetition>>()
+}
+
+
+pub fn calculate_checksum(ids:&Vec<String>) -> i32 {
+
+    let mut doubles = 0;
+    let mut tripples = 0;
+
+    fn count_rep(reps:&Vec<Repetition>, rep:&Repetition) -> i32 {
+        reps.iter()
+            .filter(|x| (**x) == *rep)
+            .count() as i32
+    }
+
+    for id in ids {
+        let reps = calculate_repetition(id);
+        doubles += count_rep(&reps, &Repetition::Double);
+        tripples += count_rep(&reps, &Repetition::Triplet);
+    }
+
+    return doubles * tripples;
+}
+
+
+pub fn start(input:&str) -> io::Result<()> {
+    println!(" :- Day 2 Part 1");
+    println!("    using file: '{}'", input);
+
+    aoc_utils::ensure_file(input);
+    let lines = aoc_utils::read_lines(input)?;
+    let checksum = calculate_checksum(&lines);
+
+    println!("    result: {}", checksum);
+
+    Ok(())
 }
