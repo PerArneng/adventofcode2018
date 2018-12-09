@@ -35,7 +35,9 @@ fn main() -> io::Result<()>{
 
         ).subcommand(
         sub_command_with_input("day2-part1", "the input id's")
-         ).get_matches();
+        ).subcommand(
+        sub_command_with_input("day2-part2", "the input id's")
+        ).get_matches();
 
         if let Some(day1_part1_matches)
             = arg_matches.subcommand_matches("day1-part1") {
@@ -56,6 +58,13 @@ fn main() -> io::Result<()>{
 
             let input = day2_part1_matches.value_of("input").unwrap();
             day2::part1::start(input)?;
+        }
+
+        if let Some(day2_part2_matches)
+            = arg_matches.subcommand_matches("day2-part2") {
+
+            let input = day2_part2_matches.value_of("input").unwrap();
+            day2::part2::start(input)?;
         }
 
         Ok(())
