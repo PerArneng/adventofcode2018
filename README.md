@@ -1,5 +1,7 @@
 # Advent of Code 2018
 
+![](https://github.com/PerArneng/adventofcode2018/workflows/Rust/badge.svg)
+
 ![Logo](docs/logo.png)
 
 This is an implementation of Advent of Code 2018
